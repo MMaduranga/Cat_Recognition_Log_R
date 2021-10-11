@@ -1,6 +1,6 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import h5py
+import numpy as np  # 1.20.3
+import matplotlib.pyplot as plt  # 3.4.2
+import h5py  # 3.2.1
 import copy
 
 
@@ -14,8 +14,10 @@ classes = np.array(test_dataset["list_classes"][:])
 
 
 def show_image(index):
-    plt.imshow(x_train_orig[:, index])
-    # print("y = " + str(train_set_y[:, index]) + ", it's a '" + classes[np.squeeze(train_set_y[:, index])].decode("utf-8") + "' picture.")
+    plt.imshow(x_train_orig[index])
+    plt.show()
+    print("y = " + str(y_train_orig[:, index]) + ", it's a '" +
+          classes[np.squeeze(y_train_orig[:, index])].decode("utf-8") + "' picture.")
 
 
 x_train_reshape = x_train_orig .reshape(x_train_orig .shape[0], -1).T  # reshape test and train data
@@ -94,3 +96,4 @@ def model(x_train, y_train, x_test, y_test, num_iterations=2000, learning_rate=0
 logistic_regression_model = model(x_train, y_train_orig, x_test, y_test_orig, num_iterations=20000, learning_rate=0.005)
 for key, val in logistic_regression_model.items():
     print(key, val)
+show_image(80)
